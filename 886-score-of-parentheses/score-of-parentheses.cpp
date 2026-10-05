@@ -3,31 +3,25 @@ public:
     int scoreOfParentheses(string s) {
           int n=s.length();
 
-             vector<int>v;
-             int score=0;
+          int score=0;
 
-              for(int i=0;i<n;i++)
-              {
-                    if(s[i]=='(')
-                    {
-                           v.push_back(score);
-                           score=0;
-                    }
+          int depth=0;
 
-                     else
-                     {
-                           if(s[i-1]=='(')
-                           {
-                                 score=v.back()+1;
-                           }
-                           else
-                           {
-                                  score=v.back()+2*score;
-                           }
-                            v.pop_back();
-                     }
-              }
+            for(int i=0;i<n;i++)
+            {
+                  if(s[i]=='(')
+                  depth++;
 
-              return score;
+                   else
+                   {
+                         depth--;
+                        if(s[i-1]=='(')
+                         {
+                             score+=(1<<depth);
+                         }
+                   }
+            }
+
+            return score;
     }
 };
